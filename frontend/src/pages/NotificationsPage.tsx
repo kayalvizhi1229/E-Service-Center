@@ -71,7 +71,7 @@ export default function NotificationsPage() {
         title="Notifications & Alerts"
         description="System alerts for low inventory stock, pending services, and customer reminders"
         action={
-          <Button variant="outline" onClick={markAllAsRead}>
+          <Button variant="default" onClick={markAllAsRead}>
             <CheckCheck className="mr-2 h-4 w-4" /> Mark All as Read
           </Button>
         }
@@ -79,14 +79,14 @@ export default function NotificationsPage() {
 
       <div className="flex gap-2">
         <Button
-          variant={!unreadOnly ? 'default' : 'outline'}
+          variant={!unreadOnly ? 'default' : 'default'}
           size="sm"
           onClick={() => setUnreadOnly(false)}
         >
           All Alerts
         </Button>
         <Button
-          variant={unreadOnly ? 'default' : 'outline'}
+          variant={unreadOnly ? 'default' : 'default'}
           size="sm"
           onClick={() => setUnreadOnly(true)}
         >
@@ -116,7 +116,7 @@ export default function NotificationsPage() {
                   <div>
                     <div className="flex items-center gap-2">
                       <h4 className="font-bold text-sm">{item.title}</h4>
-                      <Badge variant={item.isRead ? 'outline' : 'default'} className="text-[10px]">
+                      <Badge variant={item.isRead ? 'default' : 'default'} className="text-[10px]">
                         {item.type}
                       </Badge>
                     </div>

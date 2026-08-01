@@ -166,7 +166,7 @@ export default function EmployeesPage() {
           { key: 'employeeCode', label: 'Emp ID' },
           { key: 'name', label: 'Employee Name' },
           { key: 'mobile', label: 'Mobile' },
-          { key: 'role', label: 'Role', render: (r) => <Badge variant="outline">{(r.role as string) || 'Staff'}</Badge> },
+          { key: 'role', label: 'Role', render: (r) => <Badge variant="default">{(r.role as string) || 'Staff'}</Badge> },
           {
             key: 'salary',
             label: 'Monthly Salary',
@@ -283,7 +283,7 @@ export default function EmployeesPage() {
           </div>
 
           <div className="pt-2 flex justify-end gap-3">
-            <Button type="button" variant="outline" onClick={() => setModalOpen(false)} disabled={actionLoading}>
+            <Button type="button" variant="default" onClick={() => setModalOpen(false)} disabled={actionLoading}>
               Cancel
             </Button>
             <Button type="submit" disabled={actionLoading}>

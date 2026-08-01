@@ -187,7 +187,7 @@ export default function ExpensesPage() {
           {
             key: 'category',
             label: 'Category',
-            render: (r) => <Badge variant="outline">{r.category as string}</Badge>,
+            render: (r) => <Badge variant="default">{r.category as string}</Badge>,
           },
           {
             key: 'amount',
@@ -299,7 +299,7 @@ export default function ExpensesPage() {
           </div>
 
           <div className="pt-2 flex justify-end gap-3">
-            <Button type="button" variant="outline" onClick={() => setModalOpen(false)} disabled={actionLoading}>
+            <Button type="button" variant="default" onClick={() => setModalOpen(false)} disabled={actionLoading}>
               Cancel
             </Button>
             <Button type="submit" disabled={actionLoading}>
