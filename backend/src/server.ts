@@ -76,7 +76,7 @@ api.use('/settings', settingsRoutes);
 app.use('/api/v1', api);
 app.use(errorHandler);
 
-app.listen(config.port, " 0.0.0.0", () => {
+app.listen(config.port, "0.0.0.0", () => {
   console.log(`🚀 Yoga Infotech API running on http://localhost:${config.port}`);
   console.log(`📚 API Docs: http://localhost:${config.port}/api/docs`);
 });
