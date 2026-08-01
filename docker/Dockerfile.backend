@@ -1,0 +1,23 @@
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package.json ./
+COPY backend/package.json ./backend/
+RUN npm install --workspace=backend
+COPY backend ./backend
+WORKDIR /app/backend
+RUN npx prisma generate
+RUN npm run build
+
+FROM node:20-alpine
+WORKDIR /app
+COPY package.json ./
+COPY backend/package.json ./backend/
+RUN npm install --workspace=backend --omit=dev
+COPY --from=builder /app/backend/dist ./backend/dist
+COPY --from=builder /app/backend/node_modules/.prisma ./backend/node_modules/.prisma
+COPY --from=builder /app/backend/node_modules/@prisma ./backend/node_modules/@prisma
+COPY backend/prisma ./backend/prisma
+RUN mkdir -p backend/uploads
+WORKDIR /app/backend
+EXPOSE 5000
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node dist/server.js"]
