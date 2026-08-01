@@ -46,36 +46,36 @@ router.get(
     }
 
     const [customers, products, services] = await Promise.all([
-      prisma.customer.findMany({
-        where: {
-          OR: [
-            { name: { contains: q, mode: 'insensitive' } },
-            { mobile: { contains: q } },
-          ],
-        },
-        take: 5,
-      }),
-      prisma.product.findMany({
-        where: {
-          OR: [
-            { name: { contains: q, mode: 'insensitive' } },
-            { barcode: { contains: q } },
-          ],
-          isActive: true,
-        },
-        take: 5,
-      }),
-      prisma.service.findMany({
-        where: {
-          OR: [
-            { name: { contains: q, mode: 'insensitive' } },
-            { serviceCode: { contains: q, mode: 'insensitive' } },
-          ],
-        },
-        take: 5,
-        include: { customer: { select: { name: true } } },
-      }),
-    ]);
+  prisma.customer.findMany({
+    where: {
+      OR: [
+        { name: { contains: q } },
+        { mobile: { contains: q } },
+      ],
+    },
+    take: 5,
+  }),
+  prisma.product.findMany({
+    where: {
+      OR: [
+        { name: { contains: q } },
+        { barcode: { contains: q } },
+      ],
+      isActive: true,
+    },
+    take: 5,
+  }),
+  prisma.service.findMany({
+    where: {
+      OR: [
+        { name: { contains: q } },
+        { serviceCode: { contains: q } },
+      ],
+    },
+    take: 5,
+    include: { customer: { select: { name: true } } },
+  }),
+]);
 
     res.json({ success: true, data: { customers, products, services } });
   })
